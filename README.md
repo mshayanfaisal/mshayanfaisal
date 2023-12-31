@@ -1,4 +1,4 @@
-[![MasterHead]([https://1.bp.blogspot.com/-7A4WynwLsM...](https://cdn.dribbble.com/users/2401141/screenshots/5487982/media/f94135193d842e240e9c1267e4d9ca89.gif))](https://rishavchanda.io)
+
 <h1 align="center">Hi 👋, I'm Shayan Muhammad Faisal</h1>
 <h3 align="center">Aspiring developer from Pakistan</h3>
 
