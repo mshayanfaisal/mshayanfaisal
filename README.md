@@ -1,6 +1,12 @@
 <div align="center">
+  <img src="https://raw.githubusercontent.com/mshayanfaisal/mshayanfaisal/main/assets/profile.png" width="130" style="border-radius:50%" alt="Shayan Muhammad Faisal"/>
+  <h2>Shayan Muhammad Faisal</h2>
+
   <a href="https://github.com/mshayanfaisal/mshayanfaisal">
-    <img alt="Shayan Muhammad Faisal's GitHub Profile Card" src="assets/readme_card.svg">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/mshayanfaisal/mshayanfaisal/main/assets/dark_mode.svg">
+      <img alt="Shayan Muhammad Faisal's GitHub Profile README" src="https://raw.githubusercontent.com/mshayanfaisal/mshayanfaisal/main/assets/light_mode.svg">
+    </picture>
   </a>
 
   <br/><br/>
