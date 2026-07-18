@@ -14,12 +14,19 @@ on:
 permissions:
   contents: write
 
+# Never let two runs (push + schedule + manual) execute at once and race the push
+concurrency:
+  group: update-stats
+  cancel-in-progress: true
+
 jobs:
   update-stats:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -43,7 +50,18 @@ jobs:
           git add dark_mode.svg light_mode.svg cache/
           if git diff --staged --quiet; then
             echo "No changes to commit."
-          else
-            git commit -m "chore: update GitHub stats [skip ci]"
-            git push
+            exit 0
           fi
+          git commit -m "chore: update GitHub stats [skip ci]"
+          # Retry with a rebase in case main moved under us (keeps our fresh stats on conflict)
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              echo "Pushed on attempt $attempt."
+              exit 0
+            fi
+            echo "Push rejected; rebasing onto latest main (attempt $attempt)..."
+            git fetch origin main
+            git rebase -X theirs origin/main || git rebase --abort
+          done
+          echo "Failed to push after 3 attempts." >&2
+          exit 1
